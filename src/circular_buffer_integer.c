@@ -1,4 +1,5 @@
 // Circular buffer for integers
+// (C) 2020 John Edwards
 
 #include <stdio.h>
 #include <stdlib.h>
