@@ -1,6 +1,6 @@
-// Peterson’s two process mutual exclusion example
-// Cygwin : gcc mutex.c -lpthread -o mutex.exe
-// Linux  : gcc mutex.c -lpthread -o mutex
+// Dekker’s two process mutual exclusion example
+// Cygwin : gcc mutex_Dekker.c -lpthread -o mutex.exe
+// Linux  : gcc mutex_Dekker.c -lpthread -o mutex
 
 // This mutex does not support resource request while a current request is pending
 // If this scenario is a possibility then use mutex_interfaceN_pending() to ensure there is no pending request
@@ -34,9 +34,9 @@ void mutex_init (struct Mutex_t *mutex)             // Initialize the mutex
 void mutex_p1_request (struct Mutex_t *mutex)       // Request access to mutex
 {
     mutex->Trying1 = True;
-    mutex->Turn = 1;
+    mutex->Turn = 2;
 
-    while ((mutex->Trying2 == True) && (mutex->Turn == 1))  // Wait until (turn == me) OR other process not trying
+    while ((mutex->Trying2 == True) && (mutex->Turn == 2))  // Wait until (turn == me) OR other process not trying
         ;
 }
 
@@ -54,9 +54,9 @@ void mutex_p1_release (struct Mutex_t *mutex)       // Release access to mutex
 void mutex_p2_request (struct Mutex_t *mutex)       // Request access to mutex
 {
     mutex->Trying2 = True;
-    mutex->Turn = 2;
+    mutex->Turn = 1;
 
-    while ((mutex->Trying1 == True) && (mutex->Turn == 2))  // Wait until (turn == me) OR other process not trying
+    while ((mutex->Trying1 == True) && (mutex->Turn == 1))  // Wait until (turn == me) OR other process not trying
         ;
 }
 
