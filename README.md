@@ -5,9 +5,7 @@ Includes algorithms for :
 FIFO Buffers
 Mutual Exclusion
 
-For an excellent description of the differences between Peterson’s and
-Dekker’s algorithms, please see here :
-https://cs.stackexchange.com/questions/12621/contrasting-peterson-s-and-dekker-s-algorithms.
+These functions are now included within the SigLib, the AI and DSP library,
+which is available from here: https://github.com/Numerix-DSP/siglib.
 
-FYI, I tend to use Peterson’s algorithm.
 
